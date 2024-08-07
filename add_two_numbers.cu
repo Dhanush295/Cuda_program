@@ -14,12 +14,17 @@ int *dev_c;
 
 cudaMalloc((void **) &dev_c, sizeof(int));
 
+std::cout<<"After: "<<dev_c<<"\n";
+
 add<<<1,1>>>(2,7, dev_c);
 
 
 
 cudaMemcpy(&c, dev_c, sizeof(int) , cudaMemcpyDeviceToHost);
 
+
 std::cout<<"2 + 7 is "<< c;
+
+cudaFree(dev_c);
 
 };
